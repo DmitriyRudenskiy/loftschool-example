@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="Loftschool check homework" basedir="." default="build">
+    <property name="phpcodesniffer" value="./vendor/bin/phpcs" />
+    <fileset dir="./src" id="phpfiles">
+        <include name="*.php"/>
+    </fileset>
+    <target name="lint" description="Check syntax of a fileset of source files">
+        <phplint haltonfailure="true">
+            <fileset refid="phpfiles"/>
+        </phplint>
+    </target>
+    <target name="phpcs" description="Coding Standards Analysis">
+        <exec command="./vendor/bin/phpcs --colors --standard=PSR12 --extensions=php ./src" passthru="true" />
+    </target>
+    <target name="phpmd" description="Generate pmd.xml using PHPMD">
+        <exec command="./vendor/bin/phpmd src/ text codesize,unusedcode,naming" passthru="true"/>
+    </target>
+    <target name="spell-check">
+        <exec executable="${path.spell-checker.executable}" logoutput="true" passthru="true" checkreturn="true">
+            <arg line="--checkDictionaryFiles"/>
+            <arg line="--memoryLimit 1024M"/>
+        </exec>
+    </target>
+    <target name="phpunit" description="Run unit tests using PHPUnit">
+        <exec passthru="true" command="${bindir}/phpunit" checkreturn="true"/>
+    </target>
+    <target name="build" depends="lint, phpcs, phpmd" description="Run checks">
+        <echo>Build complete</echo>
+    </target>
+</project>
+
+

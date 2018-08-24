@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "test": "./vendor/bin/phing"
+  },
+  "require": {
+    "phing/phing": "^2.16",
+    "squizlabs/php_codesniffer": "*",
+    "spell-checker/spell-checker": "^0.3.6",
+    "phpmd/phpmd": "^2.6"
+  }
+}
