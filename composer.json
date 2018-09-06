@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "test": "./vendor/bin/phing"
+    "lint": "",
+    "phpcs": "./vendor/bin/",
+    "phpmd": "./vendor/bin/",
+    "speller": "./vendor/bin/",
+    "test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests",
+    "run": "./vendor/bin/phing"
   },
   "require": {
-    "phing/phing": "^2.16",
-    "squizlabs/php_codesniffer": "*",
-    "spell-checker/spell-checker": "^0.3.6",
-    "phpmd/phpmd": "^2.6"
+    "php": ">=7.1.0"
   }
 }
